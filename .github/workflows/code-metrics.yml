@@ -28,6 +28,10 @@ jobs:
         branch: ${{ github.ref }}
         dir: ${{ './github-actions/DotNet.GitHubAction' }}
 
+    - name: metrics summary
+      id: dotnet-code-metrics-summary
+      run: echo "${{ steps.dotnet-code-metrics.outputs.summary-title }}"
+
     # Create a pull request if there are changes.
     - name: Create pull request
       uses: peter-evans/create-pull-request@v3.4.1
