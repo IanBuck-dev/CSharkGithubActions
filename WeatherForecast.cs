@@ -17,5 +17,6 @@ public enum Weather
     Cloudy,
     Rainy,
     Sunny,
-    Snowy
+    Snowy,
+    Windy
 }
