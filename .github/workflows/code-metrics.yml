@@ -27,6 +27,7 @@ jobs:
         name: ${{ github.repository }}
         branch: ${{ github.ref }}
         dir: ${{ './github-actions/DotNet.GitHubAction' }}
+        workspace: ${{ github.workspace }}
 
     - name: metrics summary
       id: dotnet-code-metrics-summary
