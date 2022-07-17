@@ -1,11 +1,7 @@
 name: '.NET code metrics'
 
 on:
-  push:
-    branches: [ master ]
-    paths-ignore:
-    # Ignore CODE_METRICS.md and README.md files
-    - '**.md'
+  push
 
 # Create an environment variable named DOTNET_VERSION
 # and set it as "6.0.x"
