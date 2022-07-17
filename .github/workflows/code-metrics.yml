@@ -35,7 +35,7 @@ jobs:
 
     # 4) Build a project or solution and all of its dependencies.
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build --configuration Release --no-restore -o Release
 
     # 5) Test a project or solution.
     - name: Test
@@ -50,17 +50,19 @@ jobs:
         owner: ${{ github.repository_owner }}
         name: ${{ github.repository }}
         branch: ${{ github.ref }}
-        dir: ${{ './github-actions/DotNet.GitHubAction' }}
+        dir: ${{ './Release' }}
         workspace: ${{ github.workspace }}
 
     - name: metrics summary
       id: dotnet-code-metrics-summary
-      run: echo "${{ steps.dotnet-code-metrics.outputs.summary-title }}"
+      run: |
+        echo "${{ steps.dotnet-code-metrics.outputs.summary-title }}"
+        echo "${{ steps.dotnet-code-metrics.outputs.summary-details }}"
 
-    # Create a pull request if there are changes.
-    - name: Create pull request
-      uses: peter-evans/create-pull-request@v3.4.1
-      with:
-        title: '${{ steps.dotnet-code-metrics.outputs.summary-title }}'
-        body: '${{ steps.dotnet-code-metrics.outputs.summary-details }}'
-        commit-message: '.NET code metrics, automated pull request.'
+    # # Create a pull request if there are changes.
+    # - name: Create pull request
+    #   uses: peter-evans/create-pull-request@v3.4.1
+    #   with:
+    #     title: '${{ steps.dotnet-code-metrics.outputs.summary-title }}'
+    #     body: '${{ steps.dotnet-code-metrics.outputs.summary-details }}'
+    #     commit-message: '.NET code metrics, automated pull request.'
