@@ -31,7 +31,7 @@ jobs:
 
     # 4) Build a project or solution and all of its dependencies.
     - name: Build
-      run: dotnet build --configuration Release --no-restore -o Release
+      run: dotnet build --configuration Release --no-restore
 
     # 5) Test a project or solution.
     - name: Test
@@ -46,7 +46,7 @@ jobs:
         owner: ${{ github.repository_owner }}
         name: ${{ github.repository }}
         branch: ${{ github.ref }}
-        dir: ${{ './Release' }}
+        dir: ${{ './' }}
         workspace: ${{ github.workspace }}
 
     - name: metrics summary
